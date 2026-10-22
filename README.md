@@ -3,7 +3,7 @@
 **A transparent, data-driven ranking system that flags areas where health need is high and GP provision is low.**
 MSc Computer Science Independent Industry Project · Aston University · 2026
 
-![Need Score vs Provision Gap Score](figures/need_vs_provision.png)
+![Need Score vs Provision Gap Score](need_vs_provision.png)
 
 ## The problem
 
@@ -22,7 +22,7 @@ Existing approaches either lean on a single indicator, such as deprivation alone
 
 **Main insight:** a few extreme values distorted plain min-max scaling. They pushed small rural areas with very few GPs up the ranking and pushed high-need urban areas down. **Log-scaling patients per GP and normalising within urban and rural groups** corrected most of this, and the gain held on held-out seeds.
 
-![F1 by method](figures/f1_by_method.png)
+![F1 by method](f1_by_method.png)
 
 ## How it works
 
@@ -39,29 +39,26 @@ Existing approaches either lean on a single indicator, such as deprivation alone
 4. **Rank** all areas and shortlist the top 30.
 5. **Evaluate** against the hidden labels with precision, recall and F1. Then run sensitivity analysis on weights and shortlist size, compare five scoring methods, and repeat over 100 random seeds with a Wilcoxon signed-rank test.
 
-![Top 30 areas](figures/top30_priority_areas.png)
+![Top 30 areas](top30_priority_areas.png)
 
-## Repository structure
+## Files
 
-```
-├── src/
-│   ├── ranking_system.py   # data generation, scoring, evaluation, 100-seed robustness test
-│   └── make_figures.py     # exports data/results and draws the figures
-├── data/
-│   └── synthetic_areas_seed42.csv
-├── results/
-│   ├── top30_priority_areas.csv
-│   └── f1_100_seeds.csv
-├── figures/                # charts used in this README
-└── requirements.txt
-```
+| File | What it is |
+| --- | --- |
+| `ranking_system.py` | Data generation, scoring, evaluation and 100-seed robustness test |
+| `make_figures.py` | Exports the dataset and results, and draws the charts |
+| `synthetic_areas_seed42.csv` | The 500-area synthetic dataset (seed 42) |
+| `top30_priority_areas.csv` | The top-30 shortlist from the baseline framework |
+| `f1_100_seeds.csv` | Mean F1 ± SD for every method over 100 seeds |
+| `*.png` | Charts used in this README |
+| `requirements.txt` | Python packages needed |
 
 ## Run it
 
 ```bash
 pip install -r requirements.txt
-python src/ranking_system.py   # prints the baseline, method comparison and 100-seed results (~10 s)
-python src/make_figures.py     # recreates data/, results/ and figures/
+python ranking_system.py   # prints the baseline, method comparison and 100-seed results (~10 s)
+python make_figures.py         # recreates the CSV files and charts
 ```
 
 A fixed seed (42) reproduces every number above exactly.
