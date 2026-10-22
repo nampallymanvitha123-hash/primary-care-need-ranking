@@ -1,0 +1,12 @@
+setting,method,mean,std
+Log + within rurality,equal_sum,87.57,4.52
+Log + within rurality,multiplicative,87.37,4.32
+Log + within rurality,need_emphasis,87.7,4.28
+Log + within rurality,provision_emphasis,85.7,4.7
+Min-max,deprivation_score,39.3,6.29
+Min-max,equal_sum,76.53,5.5
+Min-max,multiplicative,71.8,5.79
+Min-max,nearest_gp_distance_km,56.9,7.06
+Min-max,need_emphasis,79.6,5.09
+Min-max,patients_per_gp,19.0,7.35
+Min-max,provision_emphasis,70.67,6.03
